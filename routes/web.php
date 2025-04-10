@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\SuratMasukController;
 use App\Http\Controllers\DaftarTamuController;
 use App\Http\Controllers\PengirimanController;
@@ -8,6 +9,11 @@ use App\Http\Middleware\AdminMiddleware;
 
 
 // Rute untuk login
+// Redirect root to login
+Route::get('/', function () {
+    return redirect('/login');
+});
+
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
