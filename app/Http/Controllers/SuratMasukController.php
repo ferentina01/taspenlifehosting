@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SuratMasuk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class SuratMasukController extends Controller
@@ -96,12 +97,13 @@ class SuratMasukController extends Controller
     // Mengupdate data surat masuk berdasarkan ID
     public function update(Request $request, $id)
     {
+
         // Validasi input
         $validator = Validator::make($request->all(), [
             'perihal' => 'required|string|max:255',
             'kurir' => 'required|string|max:255',
             'up' => 'required|string|max:255',
-            'keterangan' => 'nullable|string',
+            'keterangan' => 'required|in:Diterima,Belum Diterima',
             'tanggal_masuk' => 'required|date',
         ]);
 
@@ -110,9 +112,13 @@ class SuratMasukController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $suratMasuk = SuratMasuk::findOrFail($id); // Mencari surat masuk berdasarkan ID
-        $suratMasuk->update($request->all()); // Mengupdate data surat masuk
-        return redirect()->route('surat_masuk.index')->with('success', 'Surat Masuk berhasil diperbarui.'); // Redirect ke index dengan pesan sukses
+        $suratMasuk = SuratMasuk::findOrFail($id);
+
+        $updateData = $request->only(['perihal', 'kurir', 'up', 'keterangan', 'tanggal_masuk']);
+
+        $suratMasuk->update($updateData);
+
+        return redirect()->route('surat_masuk.index')->with('success', 'Surat Masuk berhasil diperbarui.');
     }
 
 

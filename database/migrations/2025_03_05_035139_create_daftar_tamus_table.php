@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('nama_tamu');
             $table->string('instansi');
             $table->string('pic');
-            $table->text('keterangan');
+            $table->text('keterangan')->nullable();
             $table->time('jam_kedatangan');
             $table->timestamps();
         });

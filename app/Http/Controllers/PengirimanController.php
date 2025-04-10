@@ -120,8 +120,8 @@ class PengirimanController extends Controller
         //validasi input
         $validator = Validator::make($request->all(), [
             'nama_penerima' => 'required|string|max:255',
-            'instansi' => 'required|string|max:255',
-            'alamat' => 'required|string|max:255',
+            'nama_instansi' => 'required|string|max:255',
+            'alamat_penerima' => 'required|string|max:255',
             'no_tlp' => 'required|string|max:15',
             'jenis_barang' => 'required|string|max:255',
             'keterangan' => 'required|in:Yes,Reg',

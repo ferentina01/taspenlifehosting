@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('kurir');
             $table->string('up');
             $table->date('tanggal_masuk');
-            $table->enum('Keterangan',['Diterima', 'Belum Diterima']);
+            $table->enum('keterangan', ['Diterima', 'Belum Diterima']);
             $table->timestamps();
         });
     }

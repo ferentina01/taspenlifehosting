@@ -18,22 +18,22 @@
             <label for="up" class="form-label">UP</label>
             <input type="text" class="form-control" id="up" name="up" value="{{ $suratMasuk->up }}" required>
         </div>
-        {{-- <div class="mb-3">
-            <label for="Diterima" class="form-label">Diterima</label>
-            <select class="form-select" id="Diterima" name="Diterima">
-                <option value="0" {{ $suratMasuk->Diterima ? '' : '
-                                <option value="0" {{ $suratMasuk->Diterima ? '' : 'selected' }}>Belum Diterima</option>
-                <option value="1" {{ $suratMasuk->Diterima ? 'selected' : '' }}>Diterima</option>
-            </select>
-        </div> --}}
 
-         <div class="mb-3">
+        <div class="mb-3">
             <label for="Keterangan" class="form-label">Keterangan</label>
-            <select class="form-select" id="Keterangan" name="Keterangan" required>
-                                <option value="Diterima" {{ $pengiriman->Keterangan == 'Diterima' ? 'selected' : '' }}>Diterima</option>
-                <option value="Belum Diterima" {{ $pengiriman->Keterangan == 'Belum Diterima' ? 'selected' : '' }}>Belum Diterima</option>
+            <select class="form-select" id="keterangan" name="keterangan" required>
+                <option value="Diterima" {{ $suratMasuk->keterangan == 'Diterima' ? 'selected' : '' }}>Diterima</option>
+                <option value="Belum Diterima" {{ $suratMasuk->keterangan == 'Belum Diterima' ? 'selected' : '' }}>Belum Diterima</option>
             </select>
+
+
         </div>
+
+        <div class="mb-3">
+    <label for="tanggal_masuk" class="form-label">Tanggal Masuk</label>
+    <input type="date" class="form-control" id="tanggal_masuk" name="tanggal_masuk" value="{{ \Carbon\Carbon::parse($suratMasuk->tanggal_masuk)->format('Y-m-d') }}" required>
+</div>
+
 
         <button type="submit" class="btn btn-primary">Update</button>
     </form>

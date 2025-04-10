@@ -14,6 +14,7 @@ class AdminUserSeeder extends Seeder
             'name' => 'Admin Taspen',
             'email' => 'admintaspen@gmail.com',
             'password' => Hash::make('admin123'),
+            
             'user_type' => 'admin'
         ]);
     }

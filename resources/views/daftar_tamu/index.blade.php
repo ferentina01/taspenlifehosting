@@ -54,7 +54,7 @@
                     <td>{{ $tamu->instansi }}</td>
                     <td>{{ $tamu->pic }}</td>
                     <td>{{ $tamu->keterangan }}</td>
-                    <td>{{ $tamu->jam_kedatangan }}</td>
+                    <td>{{ $tamu->jam_kedatangan }} </td>
                     <td>
                         <a href="{{ route('daftar_tamu.edit', $tamu->id) }}" class="btn btn-warning">Edit</a>
                         <form action="{{ route('daftar_tamu.destroy', $tamu->id) }}" method="POST" style="display:inline;">

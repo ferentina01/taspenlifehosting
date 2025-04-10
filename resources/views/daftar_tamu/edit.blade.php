@@ -6,6 +6,16 @@
     <form action="{{ route('daftar_tamu.update', $daftarTamu->id) }}" method="POST">
         @csrf
         @method('PUT')
+        @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
         <div class="mb-3">
             <label for="tanggal" class="form-label">Tanggal</label>
             <input type="date" class="form-control" id="tanggal" name="tanggal" value="{{ $daftarTamu->tanggal }}" required>

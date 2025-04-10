@@ -45,7 +45,6 @@ class DaftarTamuController extends Controller
     {
         /// Validasi input
         $validator = Validator::make($request->all(), [
-            'barcode' => 'required|string|max:255',
             'tanggal' => 'required|date',
             'nama_tamu' => 'required|string|max:255',
             'instansi' => 'required|string|max:255',
@@ -60,7 +59,7 @@ class DaftarTamuController extends Controller
         // Menyimpan data daftar tamu ke database
         DaftarTamu::create($request->all());
         // Redirect ke index dengan pesan sukses
-        return redirect()->route('daftar_tamu.index')->with('success', 'Daftar Tamu berhasil ditambahkan.'); 
+        return redirect()->route('daftar_tamu.index')->with('success', 'Daftar Tamu berhasil ditambahkan.');
     }
 
     /**
@@ -74,7 +73,7 @@ class DaftarTamuController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit( $id)
+    public function edit($id)
     {
         $daftarTamu = DaftarTamu::findOrFail($id); // Mencari daftar tamu berdasarkan ID
         return view('daftar_tamu.edit', compact('daftarTamu')); // Mengembalikan view untuk form edit dengan data daftar tamu
@@ -85,6 +84,9 @@ class DaftarTamuController extends Controller
      */
     public function update(Request $request,  $id)
     {
+        $request->merge([
+            'jam_kedatangan' => substr($request->jam_kedatangan, 0, 5),
+        ]);
         // Validasi input
         $validator = Validator::make($request->all(), [
             'tanggal' => 'required|date',
@@ -93,7 +95,7 @@ class DaftarTamuController extends Controller
             'pic' => 'required|string|max:255',
             'keterangan' => 'nullable|string',
             'jam_kedatangan' => 'required|date_format:H:i',
-            
+
         ]);
 
         // Jika validasi gagal, kembali ke form dengan error
@@ -109,7 +111,7 @@ class DaftarTamuController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy( $id)
+    public function destroy($id)
     {
         $daftarTamu = DaftarTamu::findOrFail($id); // Mencari daftar tamu berdasarkan ID
         $daftarTamu->delete(); // Menghapus daftar tamu
